@@ -106,8 +106,28 @@ public class Person {
     public var firstName: String
     public var lastName: String
     public var age: Int
-    public var job: Job?
-    public var spouse: Person?
+    private var _job: Job?
+    private var _spouse: Person?
+    public var job: Job? {
+        get { return _job }
+        set {
+            if age < 16 {
+                _job = nil
+            } else {
+                _job = newValue
+            }
+        }
+    }
+    public var spouse: Person? {
+        get { return _spouse }
+        set {
+            if age < 18 {
+                _spouse = nil
+            } else {
+                _spouse = newValue
+            }
+        }
+    }
     
     public init(firstName first: String, lastName last: String, age: Int) {
         self.firstName = first
